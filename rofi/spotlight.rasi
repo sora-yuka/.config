@@ -1,0 +1,139 @@
+/*
+ * spotlight.rasi - Spotlight/Raycast-style rofi theme
+ * Run: rofi -show drun -theme ~/.config/rofi/spotlight.rasi
+ * Needs: a compositor (for transparency/rounded corners), Nerd Font, icon theme
+ */
+
+configuration {
+    modi:                "drun,run";
+    show-icons:          true;
+    icon-theme:          "Papirus";
+    font:                "Inter 12";
+    display-drun:        "";
+    drun-display-format: "{name}\n<span size='small' alpha='55%'>{comment}</span>";
+
+    /* Ctrl+1..9 to jump to an entry (Alt+N clashes with rofi default kb-custom-N) */
+    kb-select-1: "Ctrl+1";
+    kb-select-2: "Ctrl+2";
+    kb-select-3: "Ctrl+3";
+    kb-select-4: "Ctrl+4";
+    kb-select-5: "Ctrl+5";
+    kb-select-6: "Ctrl+6";
+    kb-select-7: "Ctrl+7";
+    kb-select-8: "Ctrl+8";
+    kb-select-9: "Ctrl+9";
+}
+
+* {
+    bg:        #2a2a2c8c;
+    bg-field:  #ffffff14;
+    bg-select: #ffffff1f;
+    border-c:  #ffffff22;
+    fg:        #f2f2f2ff;
+    fg-dim:    #a0a0a4ff;
+
+    background-color: transparent;
+    text-color:       @fg;
+    margin:  0;
+    padding: 0;
+    spacing: 0;
+}
+
+window {
+    location:         center;
+    anchor:           center;
+    width:            600px;
+    background-color: @bg;
+    border:           1px;
+    border-color:     @border-c;
+    border-radius:    18px;
+    padding:          12px;
+}
+
+mainbox {
+    spacing:  10px;
+    children: [ inputbar, listview ];
+}
+
+inputbar {
+    text-color:       @fg;
+    background-color: @bg-field;
+    border-radius:    10px;
+    padding:          10px 14px;
+    spacing:          10px;
+    children:         [ prompt, entry ];
+}
+
+prompt {
+    text-color:     @fg-dim;
+    vertical-align: 0.5;
+}
+
+entry {
+    text-color:        @fg;
+    caret-color:       @fg;
+    placeholder:       "Search...";
+    placeholder-color: @fg-dim;
+    vertical-align:    0.5;
+}
+
+listview {
+    border:          0;
+    separator-style: none;
+    lines:        9;
+    columns:      1;
+    fixed-height: true;
+    scrollbar:    false;
+    spacing:      2px;
+}
+
+element {
+    padding:       7px 10px;
+    spacing:       14px;
+    border-radius: 10px;
+    orientation:   horizontal;
+    children:      [ element-icon, element-text ];
+}
+
+element selected.normal {
+    background-color: @bg-select;
+}
+
+element-icon {
+    size:           34px;
+    vertical-align: 0.5;
+}
+
+element-text {
+    markup:         true;
+    vertical-align: 0.5;
+    text-color:     inherit;
+}
+
+/* Override every element state explicitly so rofi's default theme
+   (cream/alternate rows, dark text, dashed separator) can't leak through */
+element normal.normal,
+element alternate.normal,
+element normal.active,
+element alternate.active,
+element normal.urgent,
+element alternate.urgent {
+    background-color: transparent;
+    text-color:       @fg;
+}
+
+element selected.normal,
+element selected.active,
+element selected.urgent {
+    background-color: @bg-select;
+    text-color:       @fg;
+}
+
+element-text, element-icon {
+    background-color: transparent;
+    text-color:       inherit;
+}
+
+mainbox, inputbar, prompt, entry {
+    border: 0;
+}

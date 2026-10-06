@@ -1,19 +1,14 @@
 
 /* --> Configuration <-- */
-configuration { 
+configuration {
     modi:                       "drun,run,filebrowser,window";
     show-icons:                 true;
-    display-drun:               "APPS";
-    display-run:                "RUN";
-    display-filebrowser:        "FILES";
-    display-window:             "WINDOW";
-    drun-display-format:        "{name}";
     window-format:              "{w} · {c} · {t}";
 }
 
 /* --> Global properties <-- */
 * {
-    font:                       "JetBrains Mono Nerd Font 12";
+    font:                       "Iosevka NF Medium 12";
     background:                 #1A1B1CFF;
     background-alt:             #2D2F33FF;
     foreground:                 #D9D9D9FF;
@@ -24,12 +19,13 @@ configuration {
 
 /* --> Main window <-- */
 window {
+    border:                     0px;
     padding:                    0px;
     transparency:               "real";
     location:                   center;
     anchor:                     center;
     fullscreen:                 false;
-    width:                      1000px;
+    width:                      745px;
     x-offset:                   0px;
     y-offset:                   0px;
 
@@ -52,10 +48,8 @@ mainbox {
 imagebox {
     padding:                    20px;
     background-color:           transparent;
-    background-image:           url("~/.config/rofi/source/chisa.jpg", height);
-    border-radius:              10px;
+    background-image:           url("~/.config/rofi/source/sky.jpg", height);
     orientation:                vertical;
-    children:                   [ "inputbar", "dummy", "mode-switcher" ];
 }
 
 listbox {
@@ -63,11 +57,7 @@ listbox {
     padding:                    20px;
     background-color:           transparent;
     orientation:                vertical;
-    children:                   [ "message", "listview" ];
-}
-
-dummy {
-    background-color:           transparent;
+    children:                   [ inputbar, "message", "listview" ];
 }
 
 /* --> Inputbar <-- */
@@ -93,7 +83,7 @@ entry {
     background-color:           inherit;
     text-color:                 inherit;
     cursor:                     text;
-    placeholder:                "Search";
+    placeholder:                "Search...";
     placeholder-color:          inherit;
 }
 
@@ -129,7 +119,7 @@ listview {
     fixed-height:                true;
     fixed-columns:               true;
     border:                      0px;
-    
+
     spacing:                     10px;
     background-color:            transparent;
     text-color:                  @foreground;

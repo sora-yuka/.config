@@ -41,12 +41,12 @@ hl.config({
             enabled                   = true,
             xray                      = true,
             special                   = false,
-            size                      = 10,
+            size                      = 6,
             passes                    = 3,
             brightness                = 1,
             noise                     = 0.05,
             contrast                  = 0.89,
-            vibrancy                  = 0.5,
+            vibrancy                  = 0.17,
             vibrancy_darkness         = 0.5,
             popups                    = false,
             popups_ignorealpha        = 0.6,
@@ -130,4 +130,11 @@ hl.config({
     scrolling = {
         fullscreen_on_one_column = true,
     },
+})
+
+hl.layer_rule({
+    match = { namespace = "rofi" },
+    blur = true;
+    ignore_alpha = 0.3,
+    no_anim = true,
 })
