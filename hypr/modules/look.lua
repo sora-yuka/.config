@@ -138,3 +138,8 @@ hl.layer_rule({
     ignore_alpha = 0.3,
     no_anim = true,
 })
+
+hl.window_rule({
+    match = { class = "^([Cc]ode)$" },
+    opacity = "0.88 0.80",
+})
