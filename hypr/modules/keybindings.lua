@@ -36,8 +36,23 @@ for i = 1, 10 do
 end
 
 -- Example special workspace (scratchpad)
-hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
+local function magic_name()
+    local ws = hl.get_active_workspace()
+    return "magic" .. ws.id
+end
+
+hl.bind(mainMod .. " + S", function()
+    local special = hl.get_active_special_workspace()
+    if special then
+        local name = special.name:gsub("^special:", "")
+        hl.dispatch(hl.dsp.workspace.toggle_special(name))
+    else
+        hl.dispatch(hl.dsp.workspace.toggle_special(magic_name()))
+    end
+end)
+hl.bind(mainMod .. " + SHIFT + S", function()
+    hl.dispatch(hl.dsp.window.move({ workspace = "special:" .. magic_name() }))
+end)
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
